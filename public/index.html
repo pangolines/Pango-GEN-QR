@@ -52,16 +52,16 @@
     <script>
       // Initialize Firebase
       var config = {
-        apiKey: "para el commit.dd",
+        apiKey: "mmm",
         authDomain: "pango-gen-qr.firebaseapp.com",
         databaseURL: "https://pango-gen-qr.firebaseio.com",
         projectId: "pango-gen-qr",
         storageBucket: "pango-gen-qr.appspot.com",
-        messagingSenderId: "para el commit "
+        messagingSenderId: "mm"
       };
       firebase.initializeApp(config);
     </script>
-
+    
 <script>
   // var config = {
   //   // ...
@@ -69,8 +69,8 @@
   // firebase.initializeApp(config);
 
 
-  function onClickButton() {
-
+  function onCreateUser() {
+    
     let email    = document.getElementById("uname").value
     let password = document.getElementById("psw").value
 
@@ -80,6 +80,7 @@
     console.log(email)
     console.log(password)
 
+    // Es el alta del usuario en Firebase!
     firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
       // Handle Errors here.
       var errorCode = error.code;
@@ -89,7 +90,57 @@
           console.log("errorMessage: " +errorMessage)
       // ...
     });
+
   }
+
+  function onLogin() {
+    
+    let email    = document.getElementById("uname").value
+    let password = document.getElementById("psw").value
+
+    email = "pangolines.ninja@gmail.com"
+    password = "PangolinesNinja123"
+
+    console.log(email)
+    console.log(password)
+
+    // LOGIN
+    firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+
+
+      console.log("Error login user" + errorCode + " rr " + errorMessage )
+      // ...
+    });
+
+  }
+
+
+
+  function onLogout() {
+    
+    let email    = document.getElementById("uname").value
+    let password = document.getElementById("psw").value
+
+    email = "pangolines.ninja@gmail.com"
+    password = "PangolinesNinja123"
+
+    console.log(email)
+    console.log(password)
+
+    firebase.auth().signOut().then(function() {
+      // Sign-out successful.
+      console.log("Chau user")
+    }).catch(function(error) {
+      // An error happened.
+      console.log("Que paso ??")
+    });
+
+  }
+
+
 
 </script>
 
@@ -145,7 +196,9 @@
         <label for="psw"><b>Password</b></label>
         <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
             
-        <button type="button" onclick="javascript:onClickButton()">Login</button>
+        <button type="button" onclick="javascript:onCreateUser()">Create User</button><br/>
+        <button type="button" onclick="javascript:onLogin()">Login User</button><br/>
+        <button type="button" onclick="javascript:onLogout()">Logout User</button><br/>
 
       </div>
     
