@@ -7,8 +7,11 @@
 
     <title>Pango Gen QR</title>
 
+
     <link rel="stylesheet" type="text/css" href="styles/inline.css">
     <link rel="stylesheet" type="text/css" href="styles/materialize.css">
+
+    <link rel="stylesheet" type="text/css" href="styles/login_form.css">
 
     <script type="text/javascript" src="scripts/jquery-3.3.1.js"></script>
     <script type="text/javascript" src="scripts/jquery.qrcode.min.js"></script>
@@ -27,11 +30,74 @@
     <link rel="icon"
          type="image/png"
          href="images/icons/icon-144x144.png">
+
+
+
+
+
+    <!-- Firebase App is always required and must be first -->
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-app.js"></script>
+
+    <!-- Add additional services you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-messaging.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-functions.js"></script>
+
+    <!-- Comment out (or don't include) services you don't want to use -->
+    <!-- <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-storage.js"></script> -->
+
+    <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "para el commit.dd",
+        authDomain: "pango-gen-qr.firebaseapp.com",
+        databaseURL: "https://pango-gen-qr.firebaseio.com",
+        projectId: "pango-gen-qr",
+        storageBucket: "pango-gen-qr.appspot.com",
+        messagingSenderId: "para el commit "
+      };
+      firebase.initializeApp(config);
+    </script>
+
+<script>
+  // var config = {
+  //   // ...
+  // };
+  // firebase.initializeApp(config);
+
+
+  function onClickButton() {
+
+    let email    = document.getElementById("uname").value
+    let password = document.getElementById("psw").value
+
+    email = "pangolines.ninja@gmail.com"
+    password = "PangolinesNinja123"
+
+    console.log(email)
+    console.log(password)
+
+    firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+
+          console.log("error: " + errorCode)
+          console.log("errorMessage: " +errorMessage)
+      // ...
+    });
+  }
+
+</script>
+
   </head>
   <body>
 
     <header class="header">
-      <h1 style="text-align: center;" class="header__title">Pango GEN QR</h1>
+      <h1 style="text-align: center;" class="header__title">Pango GEN QR (v3)</h1>
     </header>
 
     <main class="main">
@@ -62,6 +128,29 @@
         </div>
       </div>
     </main>
+
+
+
+    <h2>Login Form</h2>
+
+    
+      <div class="imgcontainer">
+        <img src="img_avatar2.png" alt="Avatar" class="avatar">
+      </div>
+    
+      <div class="container">
+        <label for="uname"><b>Username</b></label>
+        <input type="text" placeholder="Enter Username" name="uname" id="uname" required>
+    
+        <label for="psw"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+            
+        <button type="button" onclick="javascript:onClickButton()">Login</button>
+
+      </div>
+    
+
+
 
     <script type="text/javascript" src="scripts/app.js"></script>
   </body>
